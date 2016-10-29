@@ -1,9 +1,9 @@
 spring:
  datasource:
      driverClassName: com.mysql.jdbc.Driver
-     url: jdbc:mysql://localhost:3306/db_accomodation
+     url: jdbc:mysql://localhost:3306/home
      username: root
-     password: toor
+     password: tool
  jpa: # JPA
     database_platform: org.hibernate.dialect.MySQLDialect
     openInView: true
@@ -19,7 +19,7 @@ error:
 
 logging:
   level:
-    com.wladek.accomodation: INFO
+    com.kanaiza.accomodation: INFO
     org.springframework.web: INFO
     org.hibernate: ERROR
 
