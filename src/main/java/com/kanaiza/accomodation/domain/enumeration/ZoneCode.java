@@ -1,7 +1,7 @@
 package com.kanaiza.accomodation.domain.enumeration;
 
 /**
- * Created by wladek on 9/22/16.
+ * Created by kanaiza on 10/28/16.
  */
 public enum  ZoneCode {
     Z01("CBD"),

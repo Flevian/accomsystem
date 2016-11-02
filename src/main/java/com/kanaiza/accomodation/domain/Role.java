@@ -6,8 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import java.util.Set;
 
-/**
- * @author wladek
+ /**
+ * Created by kanaiza on 10/28/16.
  */
 @Entity
 public class Role extends AbstractModel{

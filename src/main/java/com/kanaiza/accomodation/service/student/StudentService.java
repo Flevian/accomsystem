@@ -1,9 +1,7 @@
 package com.kanaiza.accomodation.service.student;
 
 import com.kanaiza.accomodation.domain.User;
-import com.kanaiza.accomodation.domain.accomodation.RoomItem;
-import com.kanaiza.accomodation.domain.accomodation.RoomTransfer;
-import com.kanaiza.accomodation.domain.accomodation.StudentProfile;
+import com.kanaiza.accomodation.domain.accomodation.*;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -21,4 +19,6 @@ public interface StudentService {
     public List<RoomItem> getStudentRoomItems(Long userId , boolean getAll);
     public String issueItem(Long itemId);
     public RoomTransfer makeRequest(RoomTransfer roomTransfer);
+    public String setDiscipline(Disciplinary disciplinary);
+    public void clearStudentRoomItem(RoomItem roomItem , Long studentProfileId);
 }

@@ -1,8 +1,7 @@
 package com.kanaiza.accomodation.validator;
 
-/**
- * Created by george on 12/8/15.
- */
+
+
 
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;

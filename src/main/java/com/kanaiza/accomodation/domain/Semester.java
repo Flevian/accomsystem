@@ -7,7 +7,7 @@ import javax.persistence.Transient;
 import java.util.Date;
 
 /**
- * Created by wladek on 1/1/10.
+ * Created by kanaiza on 10/28/16.
  */
 @Entity
 public class Semester extends AbstractModel {

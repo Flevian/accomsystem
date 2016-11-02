@@ -65,6 +65,9 @@
                                                 <th>Total</th>
                                                 <th>Issued</th>
                                                 <th>Available</th>
+                                                <th>Good</th>
+                                                <th>Bad</th>
+                                                <th>Lost</th>
                                                 <th></th>
                                             </tr>
                                             </thead>
@@ -76,6 +79,9 @@
                                                     <td>${item.totalAvailable}</td>
                                                     <td>${item.totalIssued}</td>
                                                     <td>${item.getAvailable(item.totalAvailable , item.totalIssued)}</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
                                                     <td>
                                                         <a href="/admin/hostels/roomitems?flag=true&val=${item.id}">Edit</a>
                                                     </td>
@@ -113,6 +119,15 @@
                                             <div class="col-sm-9">
                                                 <form:input path="totalAvailable" id="code" type="text" cssClass="form-control" placeholder="Total available" />
                                                 <form:errors path="totalAvailable" cssClass="form-inline" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="itemStatus" class="col-sm-3 control-label">Item status</label>
+                                            <div class="col-sm-9">
+                                                <form:select path="itemStatus" id="itemStatus" type="select" cssClass="form-control">
+                                                    <form:options/>
+                                                </form:select>
+                                                <form:errors path="itemStatus" cssClass="form-inline" />
                                             </div>
                                         </div>
                                         <div class="form-group">

@@ -8,7 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 /**
- * Created by wladek on 10/7/16.
+ * Created by kanaiza on 11/2/16.
  */
 @Entity
 public class NonResident extends AbstractModel{

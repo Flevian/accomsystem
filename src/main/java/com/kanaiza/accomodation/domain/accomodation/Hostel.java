@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by wladek on 9/20/16.
+ * Created by kanaiza on 11/2/16.
  */
 @Entity
 public class Hostel extends AbstractModel {

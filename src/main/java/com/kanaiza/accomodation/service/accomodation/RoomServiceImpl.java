@@ -6,9 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by wladek on 9/22/16.
- */
+
+
 @Service
 public class RoomServiceImpl implements RoomService {
     @Autowired

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * Created by wladek on 9/22/16.
+ * Created by kanaiza on 11/1/16.
  */
 @Repository
 public interface BedRepo extends JpaRepository<Bed , Long> {

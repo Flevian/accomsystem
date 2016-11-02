@@ -1,7 +1,6 @@
 package com.kanaiza.accomodation.domain.enumeration;
-
 /**
- * Created by wladek on 9/20/16.
+ * Created by kanaiza on 10/28/16.
  */
 public enum  BedType {
     UPPER("Upper"),

@@ -42,7 +42,7 @@
             </div>
             <div class="box-body">
                 <div class="row">
-                    <div class="col-sm-7">
+                    <div class="col-sm-9">
                         <div class="box">
                             <div class="box-header">
                                 <div class="box-title">
@@ -57,6 +57,12 @@
                                                 <c:when test="${profile.student.bed.status == 'OCCUPIED'}">
                                                     <a href="/admin/student/${profile.id}/clear" class="btn btn-success">
                                                             CLEAR ROOM
+                                                    </a>
+                                                    <a href="/admin/student/disciplinaryForm/${profile.id}" class="btn btn-warning">
+                                                        DISCIPLINARY STATUS
+                                                    </a>
+                                                    <a href="/admin/student/roomTransferForm/${profile.id}" class="btn btn-warning">
+                                                        ROOM TRANSFER
                                                     </a>
                                                 </c:when>
                                                 <c:otherwise>
@@ -118,8 +124,7 @@
                                                         <c:otherwise>
                                                             <c:choose>
                                                                 <c:when test="${item.clearStatus == 'ISSUED'}">
-                                                                    <a class="btn btn-primary btn-success"
-                                                                       href="#/admin/student/item/${item.id}/clear/${profile.id}">Clear</a>
+                                                                    Issued
                                                                 </c:when>
                                                             </c:choose>
                                                         </c:otherwise>

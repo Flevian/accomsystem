@@ -7,9 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by wladek on 9/22/16.
- */
+
+
 @Service
 public class ZoneServiceImpl implements ZoneService{
     @Autowired

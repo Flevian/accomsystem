@@ -67,6 +67,7 @@
                                                 <th>Beds</th>
                                                 <th></th>
                                                 <th></th>
+                                                <th></th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -83,6 +84,9 @@
                                                     <td>
                                                         <a href="/admin/room/edit/${room.id}/${block.id}?flag=true">Edit</a>
                                                     </td>
+                                                    <td>
+                                                        <a href="/admin/room/edit/${room.id}/${block.id}?reserve=true">Reserve</a>
+                                                    </td>
                                                 </tr>
                                             </c:forEach>
                                             <tr>
@@ -97,7 +101,7 @@
                                 </c:choose>
                             </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div style="margin-top: 50px">
                         <div class="box-body">
                             <c:choose>
@@ -149,9 +153,40 @@
                                     </form:form>
                                 </c:when>
                                 <c:otherwise>
-                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal">
-                                        ADD ROOM
-                                    </button>
+                                    <c:choose>
+                                        <c:when test="${reserve == 'true'}">
+                                            <h3>Reserve Room</h3>
+                                            <form:form acceptCharset="UTF-8" action="/admin/room/reserveroom" method="post" modelAttribute="reserveRooms" cssClass="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <label for="reserveId" class="col-sm-3 control-label">Number</label>
+                                                    <div class="col-sm-9">
+                                                        <form:input path="reserveId" id="reserveId" type="text" cssClass="form-control" readonly="true"/>
+                                                        <form:input path="roomId" id="roomId" type="hidden"/>
+                                                        <form:input path="blockId" id="blockId" value="${block.id}" type="hidden"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="reserveRoomStatus" class="col-sm-3 control-label">Reserved for</label>
+                                                    <div class="col-sm-9">
+                                                        <form:select path="reserveRoomStatus" id="reserveRoomStatus" type="select" cssClass="form-control">
+                                                            <form:options/>
+                                                        </form:select>
+                                                        <form:errors path="reserveRoomStatus" cssClass="form-inline" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-3 col-sm-10">
+                                                        <input class="btn btn-success" type="submit" value="Submit">
+                                                    </div>
+                                                </div>
+                                            </form:form>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal">
+                                                ADD ROOM
+                                            </button>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </c:otherwise>
                             </c:choose>
                         </div>

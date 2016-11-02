@@ -1,7 +1,7 @@
 package com.kanaiza.accomodation.domain.enumeration;
 
 /**
- * @author Keeun Baik
+ * Created by kanaiza on 10/28/16.
  */
 public enum UserRole {
 

@@ -44,7 +44,7 @@ public class User extends AbstractModel{
     private String name;
 
     @Column(unique = true, nullable = false)
-    @NotEmpty
+    @NotEmpty(message = "Provide a correct username")
     @Pattern(regexp = LOGIN_ID_PATTERN, message = "Illegal username, use alphabets and numbers only")
     private String loginId;
 

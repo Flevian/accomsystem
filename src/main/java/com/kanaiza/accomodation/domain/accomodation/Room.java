@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by wladek on 9/20/16.
+ * Created by kanaiza on 11/2/16.
  */
 @Entity
 public class Room extends AbstractModel {
@@ -26,6 +26,8 @@ public class Room extends AbstractModel {
     private int capacity;
     @OneToMany(mappedBy = "room",fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     private List<Bed> beds = new ArrayList<>();
+    @OneToOne(mappedBy = "room", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+    private ReserveRooms reservedNo;
 
     public String getName() {
         return name;
@@ -107,5 +109,13 @@ public class Room extends AbstractModel {
 
     public boolean capacityExceeded(){
         return (capacity <= beds.size());
+    }
+
+    public ReserveRooms getReservedNo() {
+        return reservedNo;
+    }
+
+    public void setReservedNo(ReserveRooms reservedNo) {
+        this.reservedNo = reservedNo;
     }
 }

@@ -3,6 +3,7 @@ package com.kanaiza.accomodation.web.admin;
 import com.kanaiza.accomodation.domain.Semester;
 import com.kanaiza.accomodation.domain.accomodation.*;
 import com.kanaiza.accomodation.domain.enumeration.BedStatus;
+import com.kanaiza.accomodation.domain.enumeration.DisciplineType;
 import com.kanaiza.accomodation.domain.enumeration.ItemName;
 import com.kanaiza.accomodation.repository.accomodation.BedRepo;
 import com.kanaiza.accomodation.repository.accomodation.ItemCostRepo;
@@ -55,6 +56,11 @@ public class AdminController {
     BedRepo bedRepo;
     @Autowired
     RoomItemRepo roomItemRepo;
+    @Autowired
+    DamageService damageService;
+    @Autowired
+    ReserveRoomsService reserveRoomsService;
+
 
     SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
@@ -400,11 +406,16 @@ public class AdminController {
     @RequestMapping(value = "/room/edit/{roomId}/{blockId}", method = RequestMethod.GET)
     public String editRoom(@PathVariable("roomId") Long roomId,@PathVariable("blockId") Long blockId,
                            @RequestParam(value = "flag", required = false, defaultValue = "false") boolean flag,
+                           @RequestParam(value = "reserve", required = false, defaultValue = "false") boolean reserve,
                            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                            @RequestParam(value = "size", required = false, defaultValue = "15") int size,Model model) {
 
         Room room = roomService.findById(roomId);
         Block block = blockService.findById(blockId);
+        ReserveRooms reserveRooms= new ReserveRooms();
+        reserveRooms.setReserveId(room.getName());
+        reserveRooms.setRoomId(room.getId());
+
 
         Page<Room> roomsPage = blockService.findRooms(blockId, page, size);
 
@@ -412,7 +423,9 @@ public class AdminController {
         model.addAttribute("block", block);
         model.addAttribute("roomsPage", roomsPage);
         model.addAttribute("flag", flag);
+        model.addAttribute("reserve", reserve);
         model.addAttribute("room", new Room());
+        model.addAttribute("reserveRooms", reserveRooms);
         model.addAttribute("pagenatedUrl", "/admin/block/view/" + blockId);
 
         return "/admin/block/view";
@@ -439,6 +452,7 @@ public class AdminController {
 
         }
 
+
         Room newRoom = roomService.update(room);
 
         redirectAttributes.addFlashAttribute("message", true);
@@ -446,6 +460,7 @@ public class AdminController {
 
         return "redirect:/admin/block/view/" + room.getBlockId() + "?page=" + page + "&size=" + size;
     }
+
 
     @RequestMapping(value = "/room/createbed", method = RequestMethod.POST)
     public String createBed(@ModelAttribute @Valid Bed bed, BindingResult result,
@@ -738,12 +753,7 @@ public class AdminController {
                             @PathVariable("profileId") Long profileId,
                             RedirectAttributes redirectAttributes) {
 
-        RoomItem itemInDb = roomItemRepo.findOne(roomItem.getId());
-
-        itemInDb.setItemCondition(roomItem.getItemCondition());
-        itemInDb.setClearStatus(roomItem.getClearStatus());
-
-        roomItemRepo.save(itemInDb);
+        studentService.clearStudentRoomItem(roomItem, profileId);
 
         redirectAttributes.addFlashAttribute("message", true);
         redirectAttributes.addFlashAttribute("content", "Ok");
@@ -763,4 +773,96 @@ public class AdminController {
 
         return "redirect:/admin/student/" + profileId + "/details";
     }
+
+    @RequestMapping(value="/student/disciplinaryForm/{profileId}", method =RequestMethod.GET)
+    public String getDisciplineForm(Model model, @PathVariable("profileId") Long profileId){
+
+        StudentProfile profile = studentService.loadProfileById(profileId);
+
+        Disciplinary disciplinary = new Disciplinary();
+        disciplinary.setProfileId(profileId);
+
+        model.addAttribute("discipline" , disciplinary);
+        model.addAttribute("profile" , profile);
+
+
+        return "/admin/disciplinaryForm";
+
+    }
+
+    @RequestMapping(value="/setDiscipline", method = RequestMethod.POST)
+    public String setDisciplineForm(@ModelAttribute @Valid Disciplinary disciplinary, BindingResult result,
+                                    RedirectAttributes redirectAttributes, Model model){
+
+        StudentProfile profile = studentService.loadProfileById(disciplinary.getProfileId());
+
+        if (result.hasErrors()){
+
+            model.addAttribute("discipline" , disciplinary);
+            model.addAttribute("profile" , profile);
+
+            return "/admin/disciplinaryForm";
+        }
+
+        String response = studentService.setDiscipline(disciplinary);
+
+        redirectAttributes.addFlashAttribute("message" , true);
+        redirectAttributes.addFlashAttribute("content" , response);
+
+        if (disciplinary.getType() == DisciplineType.COOKING){
+            redirectAttributes.addFlashAttribute("content" , response+". clear room items");
+            return "redirect:/admin/student/"+profile.getId()+"/clear";
+        }
+
+        return "redirect:/admin/student/"+profile.getId()+"/details";
+
+    }
+
+
+    @RequestMapping(value="/student/roomTransferForm/{profileId}", method =RequestMethod.GET)
+    public String getRoomTransferForm(Model model, @PathVariable("profileId") Long profileId){
+
+        StudentProfile profile = studentService.loadProfileById(profileId);
+
+
+        model.addAttribute("profile" , profile);
+
+        return "/admin/roomTransferForm";
+
+    }
+
+    @RequestMapping(value = "/room/reserveroom", method = RequestMethod.POST)
+    public String reserveRoom( @ModelAttribute @Valid ReserveRooms reserveRooms,BindingResult result,
+                               RedirectAttributes redirectAttributes, Model model){
+
+        if (result.hasErrors()){
+            Block block = blockService.findById(reserveRooms.getBlockId());
+            model.addAttribute("reserveRooms", reserveRooms);
+
+            model.addAttribute("message", true);
+            model.addAttribute("content", "Form has errors");
+
+            return "/admin/block/view";
+        }
+        ReserveRooms newReserveRooms = reserveRoomsService.create(reserveRooms);
+
+        redirectAttributes.addFlashAttribute("message", true);
+        redirectAttributes.addFlashAttribute("content", "room reserved");
+        return "redirect:/admin/block/view/" + reserveRooms.getBlockId() ;
+    }
+
+
+    @RequestMapping(value = "/reservedRooms", method = RequestMethod.GET)
+    public String getReserveRoom(Model model) {
+
+        List<ReserveRooms> reserveRoomsList = reserveRoomsService.findAll();
+
+        model.addAttribute("reserveRoomsList", reserveRoomsList);
+        model.addAttribute("reserveRooms", new ReserveRooms());
+
+        return "/admin/reservedRooms";
+    }
+
+
+
 }

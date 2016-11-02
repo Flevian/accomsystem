@@ -4,9 +4,8 @@ import com.kanaiza.accomodation.domain.accomodation.Hostel;
 
 import java.util.List;
 
-/**
- * Created by wladek on 9/22/16.
- */
+
+
 public interface HostelService {
     public Hostel create(Hostel hostel);
     public Hostel findById(Long id);

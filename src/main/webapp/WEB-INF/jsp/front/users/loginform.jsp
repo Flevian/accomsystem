@@ -45,7 +45,7 @@
                 </div>
             </c:if>
 
-            <form:form acceptCharset="UTF-8" action="/users/login" method="post" cssClass="form-horizontal" role="form">
+            <form:form acceptCharset="UTF-8" action="/users/login" method="post" cssClass="form-horizontal" modelAttribute="user" role="form">
                 <div class="form-group">
                     <label for="username" class="col-sm-2 control-label">Username</label>
                     <div class="col-sm-4">

@@ -39,15 +39,8 @@
     <div class="box-body no-padding">
         <div class="row">
             <div class="box">
-                <div class="col-sm-4 col-sm-offset-0">
-                    <div class="row">
-                        <div class="col-sm-12 col-sm-offset-0">
-                            <img src="/resources/images/default.png" class="user-image" alt="User image" height="30%"
-                                 width="100%">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-5 col-sm-offset-1">
+
+                <div class="col-sm-8 col-sm-offset-1">
                     <div class="box">
                         <div class="box-header">
                             <c:if test="${message}">
@@ -60,7 +53,7 @@
                             <sec:authorize access="isAuthenticated()">
                                 <sec:authentication property="principal" var="principal"/>
                                 <p>
-                                 <h3>NAME : ${principal.user.name.toUpperCase()}</h3>
+                                 <h4>NAME : ${principal.user.name.toUpperCase()}</h4>
                                 </p>
                                 <c:choose>
                                     <c:when test="${profile == null}">
@@ -71,20 +64,21 @@
                                         </p>
                                     </c:when>
                                     <c:otherwise>
+
                                         <p>
-                                        <h3>GENDER : ${profile.gender.name()}</h3>
+                                        <h4>GENDER : ${profile.gender.name()}</h4>
                                         </p>
                                         <p>
-                                        <h3>REG NO : ${profile.studentRegNo.toUpperCase()}</h3>
+                                        <h4>REG NO : ${profile.studentRegNo.toUpperCase()}</h4>
                                         </p>
                                         <p>
-                                        <h3>FACULTY : ${profile.faculty.toUpperCase()}</h3>
+                                        <h4>FACULTY : ${profile.faculty.toUpperCase()}</h4>
                                         </p>
                                         <p>
-                                        <h3>DEPARTMENT : ${profile.department.toUpperCase()}</h3>
+                                        <h4>DEPARTMENT : ${profile.department.toUpperCase()}</h4>
                                         </p>
                                         <p>
-                                        <h3>COURSE : ${profile.course.toUpperCase()}</h3>
+                                        <h4>COURSE : ${profile.course.toUpperCase()}</h4>
                                         </p>
 
                                         <c:choose>
@@ -128,6 +122,15 @@
                 <div class="box">
                     <div class="col-sm-9 col-sm-offset-1 col-md-10 col-md-offset-1 main">
                         <form:form acceptCharset="UTF-8" action="${url}" method="post" modelAttribute="studentProfile" cssClass="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="code" class="col-sm-3 control-label">Zone</label>
+                                <div class="col-sm-9">
+                                    <form:select path="code" name="code" type="select" cssClass="form-control">
+                                        <form:options />
+                                    </form:select>
+                                    <form:input path="id" id="id" type="hidden"/>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="studentRegNo" class="col-sm-3 control-label">Reg No</label>
                                 <div class="col-sm-9">

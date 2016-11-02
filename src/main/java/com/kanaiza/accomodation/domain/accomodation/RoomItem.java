@@ -11,7 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 /**
- * Created by wladek on 9/26/16.
+ * Created by kanaiza on 11/2/16.
  */
 @Entity
 public class RoomItem extends AbstractModel {

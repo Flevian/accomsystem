@@ -8,9 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
-/**
- * @author wladek
- */
+
+
 @EnableAutoConfiguration
 @ComponentScan
 public class Application extends SpringBootServletInitializer {

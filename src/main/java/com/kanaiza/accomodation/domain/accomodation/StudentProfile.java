@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
- * Created by wladek on 9/22/16.
+ * Created by kanaiza on 10/28/16.
  */
 @Entity
 public class StudentProfile extends AbstractModel {
@@ -30,6 +30,9 @@ public class StudentProfile extends AbstractModel {
     private User student;
     @OneToMany(mappedBy = "profile" , cascade = {CascadeType.REMOVE, CascadeType.PERSIST} , fetch = FetchType.LAZY)
     private List<RoomTransfer> roomTransfers;
+
+    @OneToMany(mappedBy = "profile", cascade = {CascadeType.REMOVE, CascadeType.PERSIST} , fetch = FetchType.LAZY)
+    private List<Disciplinary> disciplinaries;
 
     public String getStudentRegNo() {
         return studentRegNo;
@@ -93,5 +96,13 @@ public class StudentProfile extends AbstractModel {
 
     public void setRoomTransfers(List<RoomTransfer> roomTransfers) {
         this.roomTransfers = roomTransfers;
+    }
+
+    public List<Disciplinary> getDisciplinaries() {
+        return disciplinaries;
+    }
+
+    public void setDisciplinaries(List<Disciplinary> disciplinaries) {
+        this.disciplinaries = disciplinaries;
     }
 }

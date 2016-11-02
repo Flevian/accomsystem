@@ -8,9 +8,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- * Created by wladek on 11/24/15.
- */
+
+
 @Service
 public class RoleServiceImpl implements RoleService{
     @Autowired

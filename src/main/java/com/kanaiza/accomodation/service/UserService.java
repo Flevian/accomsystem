@@ -4,9 +4,7 @@ import com.kanaiza.accomodation.domain.User;
 
 import java.util.List;
 
-/**
- * @author wladek
- */
+
 public interface UserService {
 
     User addNewUser(User user);

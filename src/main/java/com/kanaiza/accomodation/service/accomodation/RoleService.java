@@ -4,9 +4,8 @@ import com.kanaiza.accomodation.domain.Role;
 
 import java.util.List;
 
-/**
- * Created by wladek on 11/24/15.
- */
+
+
 public interface RoleService {
     public Role create(Role role);
     public Role getOne(Long roleId);

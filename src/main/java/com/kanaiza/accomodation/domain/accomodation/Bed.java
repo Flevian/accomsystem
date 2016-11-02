@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 
 /**
- * Created by wladek on 9/20/16.
+ * Created by kanaiza on 11/2/16.
  */
 @Entity
 public class Bed extends AbstractModel {

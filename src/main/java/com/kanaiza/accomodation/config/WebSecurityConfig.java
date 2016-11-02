@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Keeun Baik
+ * @author Kanaiza
  */
 @Configuration
 @EnableWebMvcSecurity

@@ -25,9 +25,8 @@ import javax.transaction.Transactional;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/**
- * Created by wladek on 9/22/16.
- */
+
+
 @Service
 @Transactional
 public class BedServiceImpl implements BedService {

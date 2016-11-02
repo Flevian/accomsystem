@@ -8,9 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * Created by wladek on 9/28/16.
- */
+
 @Repository
 public interface RoomItemRepo extends JpaRepository<RoomItem , Long>{
     public List<RoomItem> findByClearStatusAndStudent(RoomItemClearStatus status , User student);

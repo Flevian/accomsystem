@@ -10,9 +10,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * @author wladek
- */
+
+
 public class UserDetailsImpl implements UserDetails {
 
     private static final String ROLE_PREFIX = "ROLE_";

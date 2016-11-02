@@ -5,9 +5,8 @@ import com.kanaiza.accomodation.domain.accomodation.RoomItem;
 
 import java.util.List;
 
-/**
- * Created by wladek on 9/22/16.
- */
+
+
 public interface BedService {
     public Bed create(Bed bed);
     public Bed findOne(Long bed);

@@ -2,10 +2,7 @@ package com.kanaiza.accomodation.web.student;
 
 import com.kanaiza.accomodation.domain.accomodation.*;
 import com.kanaiza.accomodation.service.UserDetailsImpl;
-import com.kanaiza.accomodation.service.accomodation.BedService;
-import com.kanaiza.accomodation.service.accomodation.BlockService;
-import com.kanaiza.accomodation.service.accomodation.HostelService;
-import com.kanaiza.accomodation.service.accomodation.RoomService;
+import com.kanaiza.accomodation.service.accomodation.*;
 import com.kanaiza.accomodation.service.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,6 +32,8 @@ public class StudentController {
     BedService bedService;
     @Autowired
     RoomService roomService;
+    @Autowired
+    ReserveRoomsService reserveRoomsService;
 
     @RequestMapping(value = "/profile/{id}" , method = RequestMethod.GET)
     public String loadProfile(@PathVariable("id") Long id , Model model){
@@ -135,6 +134,8 @@ public class StudentController {
                             @RequestParam(value = "size" , required = false , defaultValue = "10") int size, Model model){
         Block block = blockService.findById(blockId);
         Page<Room> roomsPage = blockService.findRooms(blockId , page ,size);
+        List<ReserveRooms> reserveRooms = reserveRoomsService.findAll();
+
         model.addAttribute("block" , block);
         model.addAttribute("roomsPage" , roomsPage);
         model.addAttribute("pagenatedUrl" , "/student/hostel/block/"+blockId);

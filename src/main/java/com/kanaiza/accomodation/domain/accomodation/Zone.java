@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by wladek on 9/20/16.
+ * Created by kanaiza on 10/28/16.
  */
 @Entity
 public class Zone extends AbstractModel{
