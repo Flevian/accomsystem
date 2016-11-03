@@ -33,6 +33,8 @@ public class StudentProfile extends AbstractModel {
 
     @OneToMany(mappedBy = "profile", cascade = {CascadeType.REMOVE, CascadeType.PERSIST} , fetch = FetchType.LAZY)
     private List<Disciplinary> disciplinaries;
+    @OneToMany(mappedBy = "profile", cascade = {CascadeType.REMOVE, CascadeType.PERSIST} , fetch = FetchType.LAZY)
+    private List<NonResident> nonResident;
 
     public String getStudentRegNo() {
         return studentRegNo;
@@ -104,5 +106,13 @@ public class StudentProfile extends AbstractModel {
 
     public void setDisciplinaries(List<Disciplinary> disciplinaries) {
         this.disciplinaries = disciplinaries;
+    }
+
+    public List<NonResident> getNonResident() {
+        return nonResident;
+    }
+
+    public void setNonResident(List<NonResident> nonResident) {
+        this.nonResident = nonResident;
     }
 }

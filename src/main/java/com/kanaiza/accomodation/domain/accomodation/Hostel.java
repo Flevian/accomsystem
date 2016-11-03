@@ -63,4 +63,7 @@ public class Hostel extends AbstractModel {
     public void setZoneId(Long zoneId) {
         this.zoneId = zoneId;
     }
+
+  
+
 }

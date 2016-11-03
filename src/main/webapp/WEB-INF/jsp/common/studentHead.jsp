@@ -85,7 +85,7 @@
                     </li>
 
                     <li>
-                        <a href="/student/non-resident/${principal.user.id}"><i class="fa fa-files-o"></i> <span>Non Resident form</span></a>
+                        <a href="/student/nonResident/${principal.user.id}"><i class="fa fa-files-o"></i> <span>Non Resident form</span></a>
                     </li>
                 </sec:authorize>
             </ul>

@@ -2,10 +2,7 @@ package com.kanaiza.accomodation.domain.accomodation;
 
 import com.kanaiza.accomodation.domain.AbstractModel;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by kanaiza on 11/2/16.
@@ -66,5 +63,18 @@ public class NonResident extends AbstractModel{
 
     public void setSemCount(SemCount semCount) {
         this.semCount = semCount;
+    }
+    /**
+     * hold's student profile id
+     */
+    @Transient
+    private Long profileId;
+
+    public Long getProfileId() {
+        return profileId;
+    }
+
+    public void setProfileId(Long profileId) {
+        this.profileId = profileId;
     }
 }

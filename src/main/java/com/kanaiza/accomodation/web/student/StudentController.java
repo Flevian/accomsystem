@@ -33,6 +33,8 @@ public class StudentController {
     @Autowired
     RoomService roomService;
     @Autowired
+    NonResidentService nonResidentService;
+    @Autowired
     ReserveRoomsService reserveRoomsService;
 
     @RequestMapping(value = "/profile/{id}" , method = RequestMethod.GET)
@@ -237,6 +239,53 @@ public class StudentController {
 
         return "redirect:/student/room/transfer/"+studentProfile.getStudent().getId();
     }
+
+    @RequestMapping(value = "/nonResident/{studentId}" , method = RequestMethod.GET)
+    public String requestNonResident(@PathVariable("studentId") Long studentId, RedirectAttributes redirectAttributes,
+                                     Model model){
+
+        StudentProfile studentProfile = studentService.loadProfile(studentId);
+        Bed bed = bedService.findById(studentId);
+
+        if(bed == null) {
+
+                NonResident nonResident = new NonResident();
+
+                model.addAttribute("profile", studentProfile);
+                model.addAttribute("nonResident", nonResident);
+
+                return "/student/hostel/nonResidentForm";
+
+        }
+        else{
+            redirectAttributes.addFlashAttribute("message" , true);
+            redirectAttributes.addFlashAttribute("content" , "You already have room");
+
+            return "redirect:/student/profile/"+studentProfile.getStudent().getId();
+        }
+    }
+    @RequestMapping(value = "/nonResident/{profileId}" , method = RequestMethod.POST)
+    public String submitNonResidence(@ModelAttribute @Valid NonResident nonResident ,BindingResult result,
+                                     RedirectAttributes redirectAttributes, Model model){
+
+        StudentProfile studentProfile = studentService.loadProfileById(nonResident.getProfileId());
+
+
+        if (result.hasErrors()){
+            model.addAttribute("profile" , studentProfile);
+            model.addAttribute("nonResident" , new NonResident());
+
+            return "/student/hostel/nonResidentForm";
+        }
+
+        NonResident resultl = nonResidentService.create(nonResident);
+
+        redirectAttributes.addFlashAttribute("message" , true);
+        redirectAttributes.addFlashAttribute("content" , "You are now a non-resident");
+
+        return "redirect:/student/profile/"+studentProfile.getStudent().getId();
+    }
+
 
     public StudentProfile checkProfile(Long userId){
         return studentService.loadProfile(userId);

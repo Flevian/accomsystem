@@ -327,4 +327,9 @@ public class BedServiceImpl implements BedService {
         return cal.getTime();
     }
 
+    @Override
+    public Bed findById(Long studentId) {
+
+        return bedRepo.findOne(studentId);
+    }
 }
