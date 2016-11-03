@@ -4,7 +4,10 @@ import com.kanaiza.accomodation.domain.Semester;
 import com.kanaiza.accomodation.domain.accomodation.*;
 import com.kanaiza.accomodation.domain.enumeration.BedStatus;
 import com.kanaiza.accomodation.domain.enumeration.DisciplineType;
+import com.kanaiza.accomodation.domain.enumeration.Gender;
 import com.kanaiza.accomodation.domain.enumeration.ItemName;
+import com.kanaiza.accomodation.repository.CustomRepo;
+import com.kanaiza.accomodation.repository.CustomRepoImpl;
 import com.kanaiza.accomodation.repository.accomodation.BedRepo;
 import com.kanaiza.accomodation.repository.accomodation.ItemCostRepo;
 import com.kanaiza.accomodation.repository.accomodation.RoomItemRepo;
@@ -14,6 +17,7 @@ import com.kanaiza.accomodation.service.student.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,6 +64,8 @@ public class AdminController {
     DamageService damageService;
     @Autowired
     ReserveRoomsService reserveRoomsService;
+//    @Autowired @Qualifier("customRepo")
+//    CustomRepoImpl customRepo;
 
 
     SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
@@ -114,6 +120,10 @@ public class AdminController {
         } else {
             semester = new Semester();
         }
+
+//        List<String> beds = customRepo.getVacantBeds("Z001" , Gender.FEMALE.toString());
+
+//        logger.info("++++++++++++++ BED COUNT ++++++++++++++++++ =: "+beds.size());
 
         model.addAttribute("semester", semester);
 
