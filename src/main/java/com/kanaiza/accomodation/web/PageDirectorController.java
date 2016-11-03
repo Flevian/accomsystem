@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Created by wladek on 7/6/15.
+ * Created by kanaiza on 10/31/16.
  */
 @Controller
 public class PageDirectorController {

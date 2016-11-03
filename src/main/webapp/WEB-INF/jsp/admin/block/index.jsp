@@ -29,16 +29,6 @@
     </div><!-- /.box-header -->
     <div class="box-body">
         <div class="box">
-            <div class="box-header">
-                <%--<div class="box-tools">
-                    <a type="button" class="btn btn-primary btn-sm" href="#">
-                        Users
-                    </a>
-                    &nbsp;&nbsp;
-                    <a type="button" class="btn btn-primary btn-sm" href="#">
-                        Roles
-                    </a>
-                </div>--%>
 
                 <c:if test="${message}">
                     <div class="alert alert-success">

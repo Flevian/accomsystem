@@ -6,9 +6,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * This is a Abstract model to be extended by all models
- */
 
 @MappedSuperclass
 public abstract class  AbstractModel implements Serializable {

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 
 /**
- * @author wladek
+ * @author kanaiza
  */
 @Component
 public class UserValidator {

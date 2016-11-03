@@ -30,16 +30,6 @@
     <div class="box-body">
         <div class="box">
             <div class="box-header">
-                <%--<div class="box-tools">
-                    <a type="button" class="btn btn-primary btn-sm" href="#">
-                        Users
-                    </a>
-                    &nbsp;&nbsp;
-                    <a type="button" class="btn btn-primary btn-sm" href="#">
-                        Roles
-                    </a>
-                </div>--%>
-
                 <c:if test="${message}">
                     <div class="alert alert-success">
                             ${content}
@@ -88,12 +78,6 @@
                             </div>
                 </div>
                 <div class="col-sm-3">
-                    <%--<div style="margin-top: 50px">--%>
-                        <%--<div class="box-body">--%>
-                                    <%--<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal">--%>
-                                        <%--ADD ZONE--%>
-                                    <%--</button>--%>
-                        <%--</div>--%>
                     </div>
                 </div>
             </div>

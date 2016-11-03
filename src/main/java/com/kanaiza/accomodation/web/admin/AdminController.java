@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by wladek on 9/22/16.
+ * Created by kanaiza 10/29/16.
  */
 @Controller
 @RequestMapping(value = "/admin")

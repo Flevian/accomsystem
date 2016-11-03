@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 /**
- * @author Keeun Baik
+ * @author kanaiza
  */
 @Configuration
 public class TestConfiguration {

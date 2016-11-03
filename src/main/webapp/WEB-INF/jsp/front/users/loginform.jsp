@@ -59,15 +59,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class=" col-sm-2 control-label">
-                        Remember me
-                    </label>
-                    <div class="col-sm-1 col-sm-offset-0">
-                        <input type="checkbox" class="form-control" checked="checked"
-                               name="remember-me">
-                    </div>
-                </div>
-                <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <input class="btn btn-success" type="submit" value="Submit">
                     </div>

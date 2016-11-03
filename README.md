@@ -1,4 +1,4 @@
-Spring mvc application for pension system
+Spring mvc application for accommodation system
 # Requirements
 
 * Java 1.7 of higher
@@ -6,27 +6,23 @@ Spring mvc application for pension system
 * Maven
     *maven version 3.0.3 or higher
 *Internet connection
-    *This is important for maven to download dependecies from maven centrall in initial project set up
+    *This is important for maven to download dependencies from maven central in initial project set up
 # Database Mysql database
-   1.Create database named  `db_accomodation`
+   1.Create database named  `home`
    2.To set db password open file named application.yml.(path from project root = src/main/resources/application.yml)
 
-#Log In
+#Registering users
   1.ADMIN
-     username  'ochiwladek'
-     password  'ochiwladek.'//Take note of the fullstop.
+     sign up into the system using the sign up link.
+     *From a linux terminal or windows command prompt, navigate to project root directory of the extracted zip file and
+        run mysql queries and access users table and change the role to 'ADMIN', take note it should be in uppercase.
 
-  2.STUDENT
-    a) Account 1
-        username 'teststudent'
-        password 'pass'
-    b)Account 2
-        username 'mike'
-        password 'pass'
-
+  2.STUDENT(S)
  #Student sign up
    New students can sign up into the system using the sign up link.
    They complete their profiles before they can start booking.
+#log in
+   use username or email and the pass word you provided during sign up.
 # How to run
   *Import the sql file provided named init.sql (path= project root directory).
   *From a linux terminal or windows command prompt, navigate to project root directory of the extracted zip file and
