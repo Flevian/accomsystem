@@ -48,7 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         String[] permitAllUrls = new String[]{"/", "/users/signupform",
                 "/users/loginform", "/users/login", "/users/loginfailure",
-                "/users/logout", "/users/signup", "/test/**" , "/url-processor"};
+                "/users/logout", "/users/signup", "/test/**" , "/url-processor" ,
+                "/api/**"};
 
         http.formLogin()
                 .loginPage("/users/loginform")

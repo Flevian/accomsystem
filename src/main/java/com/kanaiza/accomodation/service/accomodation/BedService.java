@@ -2,6 +2,7 @@ package com.kanaiza.accomodation.service.accomodation;
 
 import com.kanaiza.accomodation.domain.accomodation.Bed;
 import com.kanaiza.accomodation.domain.accomodation.RoomItem;
+import com.kanaiza.accomodation.domain.enumeration.BedStatus;
 
 import java.util.List;
 
@@ -18,4 +19,5 @@ public interface BedService {
     public List<RoomItem> getStudentRoomItems(boolean getAll);
     public void cancelBooking(Long studentId);
     public String clearBed(Long bedId);
+    public List<Bed> findByStatusAndZoneCode(BedStatus bedStatus , String zoneCode);
 }

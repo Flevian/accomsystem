@@ -23,6 +23,7 @@ public class Bed extends AbstractModel {
     private Room room;
     @OneToOne
     private User student;
+    private String zoneCode;
 
     public String getNumber() {
         return number;
@@ -77,5 +78,13 @@ public class Bed extends AbstractModel {
 
     public boolean myBed(Long userId){
         return (userId == student.getId());
+    }
+
+    public String getZoneCode() {
+        return zoneCode;
+    }
+
+    public void setZoneCode(String zoneCode) {
+        this.zoneCode = zoneCode;
     }
 }

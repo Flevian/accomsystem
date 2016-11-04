@@ -14,4 +14,5 @@ import java.util.List;
 @Repository
 public interface BedRepo extends JpaRepository<Bed , Long> {
     public List<Bed> findByStatusAndRoom(BedStatus status , Room room);
+    public List<Bed> findByStatusAndZoneCode(BedStatus status , String zoneCode);
 }
