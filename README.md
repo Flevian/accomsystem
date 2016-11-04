@@ -9,7 +9,8 @@ Spring mvc application for accommodation system
     *This is important for maven to download dependencies from maven central in initial project set up
 # Database Mysql database
    1.Create database named  `home`
-   2.To set db password open file named application.yml.(path from project root = src/main/resources/application.yml)
+   2.To set db password open file named DataSourceConfig.java. Inside, change the private method localdatasource() to match
+   your database configurations.
 
 #Registering users
   1.ADMIN

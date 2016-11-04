@@ -60,6 +60,7 @@ public class BedServiceImpl implements BedService {
         bed.setNumber(bedNo);
         bed.setRoom(room);
         bed.setStatus(BedStatus.AVAILABLE);
+        bed.setZoneCode(room.getBlock().getHostel().getZone().getCode());
         return bedRepo.save(bed);
     }
 
@@ -331,5 +332,10 @@ public class BedServiceImpl implements BedService {
     public Bed findById(Long studentId) {
 
         return bedRepo.findOne(studentId);
+    }
+
+    @Override
+    public List<Bed> findByStatusAndZoneCode(BedStatus bedStatus, String zoneCode) {
+        return bedRepo.findByStatusAndZoneCode(bedStatus , zoneCode);
     }
 }
