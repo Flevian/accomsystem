@@ -20,8 +20,8 @@ public class DataSourceConfig {
 
     private DataSource localDataSource() {
         String username = "root";
-        String password = "toor";
-        String dbUrl = "jdbc:mysql://localhost:3306/db_accomodation";
+        String password = "tool";
+        String dbUrl = "jdbc:mysql://localhost:3306/home";
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl(dbUrl);
