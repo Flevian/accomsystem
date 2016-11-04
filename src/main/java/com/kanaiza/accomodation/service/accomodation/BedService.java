@@ -10,7 +10,6 @@ import java.util.List;
 public interface BedService {
     public Bed create(Bed bed);
     public Bed findOne(Long bed);
-    public Bed findById(Long studentId);
     public List<Bed> findAll();
     public Bed update(Bed bed);
     public void delete(Bed bed);

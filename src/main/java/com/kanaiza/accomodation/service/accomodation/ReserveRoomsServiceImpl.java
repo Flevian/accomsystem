@@ -47,6 +47,13 @@ public class ReserveRoomsServiceImpl implements ReserveRoomsService {
 
     @Override
     public List<ReserveRooms> findAll() {
+        return reserveRoomsRepo.findAll();
+    }
+
+
+
+    @Override
+    public ReserveRooms findOne(Long reserveRooms) {
         return null;
     }
 }

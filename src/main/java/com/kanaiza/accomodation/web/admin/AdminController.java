@@ -2,16 +2,10 @@ package com.kanaiza.accomodation.web.admin;
 
 import com.kanaiza.accomodation.domain.Semester;
 import com.kanaiza.accomodation.domain.accomodation.*;
-import com.kanaiza.accomodation.domain.enumeration.BedStatus;
-import com.kanaiza.accomodation.domain.enumeration.DisciplineType;
-import com.kanaiza.accomodation.domain.enumeration.Gender;
-import com.kanaiza.accomodation.domain.enumeration.ItemName;
+import com.kanaiza.accomodation.domain.enumeration.*;
 import com.kanaiza.accomodation.repository.CustomRepo;
 import com.kanaiza.accomodation.repository.CustomRepoImpl;
-import com.kanaiza.accomodation.repository.accomodation.BedRepo;
-import com.kanaiza.accomodation.repository.accomodation.ItemCostRepo;
-import com.kanaiza.accomodation.repository.accomodation.RoomItemRepo;
-import com.kanaiza.accomodation.repository.accomodation.SemesterRepo;
+import com.kanaiza.accomodation.repository.accomodation.*;
 import com.kanaiza.accomodation.service.accomodation.*;
 import com.kanaiza.accomodation.service.student.StudentService;
 import org.slf4j.Logger;
@@ -64,6 +58,8 @@ public class AdminController {
     DamageService damageService;
     @Autowired
     ReserveRoomsService reserveRoomsService;
+    @Autowired
+    RoomRepo roomRepo;
 //    @Autowired @Qualifier("customRepo")
 //    CustomRepoImpl customRepo;
 
@@ -690,7 +686,7 @@ public class AdminController {
             semesterRepo.save(semInDb);
 
             redirectAttributes.addFlashAttribute("message", true);
-            redirectAttributes.addFlashAttribute("content", "Dates set successfully");
+            redirectAttributes.addFlashAttribute("content", "Dates updated successfully");
 
         } else {
 
@@ -854,20 +850,35 @@ public class AdminController {
 
             return "/admin/block/view";
         }
-        ReserveRooms newReserveRooms = reserveRoomsService.create(reserveRooms);
 
-        redirectAttributes.addFlashAttribute("message", true);
-        redirectAttributes.addFlashAttribute("content", "room reserved");
-        return "redirect:/admin/block/view/" + reserveRooms.getBlockId() ;
+        Room roomInDb = roomService.findById(reserveRooms.getRoomId());
+
+        if(roomInDb.getStatus() == RoomStatus.RESERVED)
+        {
+            redirectAttributes.addFlashAttribute("message", true);
+            redirectAttributes.addFlashAttribute("content", "Room is already reserved");
+            return "redirect:/admin/block/view/" + reserveRooms.getBlockId() ;
+        }
+        else {
+            ReserveRooms newReserveRooms = reserveRoomsService.create(reserveRooms);
+            roomInDb.setStatus(RoomStatus.RESERVED);
+            roomRepo.save(roomInDb);
+
+            redirectAttributes.addFlashAttribute("message", true);
+            redirectAttributes.addFlashAttribute("content", "room reserved");
+            return "redirect:/admin/block/view/" + reserveRooms.getBlockId();
+        }
     }
 
 
     @RequestMapping(value = "/reservedRooms", method = RequestMethod.GET)
-    public String getReserveRoom(Model model) {
+    public String getReserveRoom(
+                                 Model model) {
 
-        List<ReserveRooms> reserveRoomsList = reserveRoomsService.findAll();
 
-        model.addAttribute("reserveRoomsList", reserveRoomsList);
+        List <ReserveRooms> reserveRoomsList= reserveRoomsService.findAll();
+
+        model.addAttribute("reserveRoomsPage", reserveRoomsList);
         model.addAttribute("reserveRooms", new ReserveRooms());
 
         return "/admin/reservedRooms";

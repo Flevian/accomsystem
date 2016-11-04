@@ -136,7 +136,6 @@ public class StudentController {
                             @RequestParam(value = "size" , required = false , defaultValue = "10") int size, Model model){
         Block block = blockService.findById(blockId);
         Page<Room> roomsPage = blockService.findRooms(blockId , page ,size);
-        List<ReserveRooms> reserveRooms = reserveRoomsService.findAll();
 
         model.addAttribute("block" , block);
         model.addAttribute("roomsPage" , roomsPage);
@@ -148,6 +147,7 @@ public class StudentController {
 
     @RequestMapping(value = "/room/{roomId}" , method = RequestMethod.GET)
     public String viewRoom(@PathVariable("roomId") Long roomId, Model model){
+
 
         Room room = roomService.findById(roomId);
         model.addAttribute("room" , room);
@@ -242,12 +242,21 @@ public class StudentController {
 
     @RequestMapping(value = "/nonResident/{studentId}" , method = RequestMethod.GET)
     public String requestNonResident(@PathVariable("studentId") Long studentId, RedirectAttributes redirectAttributes,
-                                     Model model){
+                                     Model model) {
 
         StudentProfile studentProfile = studentService.loadProfile(studentId);
-        Bed bed = bedService.findById(studentId);
+        Bed bed = bedService.getStudentBed(studentId);
 
-        if(bed == null) {
+        if (studentProfile == null) {
+            model.addAttribute("studentProfile", new StudentProfile());
+            model.addAttribute("url", "/student/profile/createProfile");
+            redirectAttributes.addFlashAttribute("message", true);
+            redirectAttributes.addFlashAttribute("content", "Complete your profile");
+
+            return "redirect:/student/profile/" + studentProfile.getStudent().getId();
+        }
+
+            else if(bed == null) {
 
                 NonResident nonResident = new NonResident();
 
@@ -256,14 +265,14 @@ public class StudentController {
 
                 return "/student/hostel/nonResidentForm";
 
-        }
-        else{
-            redirectAttributes.addFlashAttribute("message" , true);
-            redirectAttributes.addFlashAttribute("content" , "You already have room");
+            } else {
+                redirectAttributes.addFlashAttribute("message", true);
+                redirectAttributes.addFlashAttribute("content", "You already have room");
 
-            return "redirect:/student/profile/"+studentProfile.getStudent().getId();
+                return "redirect:/student/profile/" + studentProfile.getStudent().getId();
+            }
         }
-    }
+
     @RequestMapping(value = "/nonResident/{profileId}" , method = RequestMethod.POST)
     public String submitNonResidence(@ModelAttribute @Valid NonResident nonResident ,BindingResult result,
                                      RedirectAttributes redirectAttributes, Model model){

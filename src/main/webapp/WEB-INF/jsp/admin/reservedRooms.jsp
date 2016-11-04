@@ -59,7 +59,7 @@
                   <tbody>
                   <c:forEach items="reserveRoomsList" var="reserve">
                     <tr>
-                      <td>#</td>
+                      <td>${reserve.roomId}</td>
                       <td>#</td>
                       <td>#</td>
                       <td>#</td>
@@ -67,7 +67,7 @@
                         <a href="/admin/student/#">Allocate</a>
                       </td>
                       <td>
-                        <a href="/admin/student/#">Edit</a>
+                        <a href="/admin/room/edit/{roomId}/{blockId}">Edit</a>
                       </td>
                     </tr>
                   </c:forEach>

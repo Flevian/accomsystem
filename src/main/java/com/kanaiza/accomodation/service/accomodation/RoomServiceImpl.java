@@ -1,11 +1,16 @@
 package com.kanaiza.accomodation.service.accomodation;
 
+import com.kanaiza.accomodation.domain.accomodation.ReserveRooms;
 import com.kanaiza.accomodation.domain.accomodation.Room;
+import com.kanaiza.accomodation.domain.enumeration.RoomStatus;
+import com.kanaiza.accomodation.repository.accomodation.ReserveRoomsRepo;
 import com.kanaiza.accomodation.repository.accomodation.RoomRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 
 
 @Service
@@ -14,10 +19,14 @@ public class RoomServiceImpl implements RoomService {
     RoomRepo roomRepo;
     @Autowired
     BlockService blockService;
+    @Autowired
+    ReserveRoomsRepo reserveRoomsRepo;
 
     @Override
     public Room create(Room room) {
         room.setBlock(blockService.findById(room.getBlockId()));
+
+        room.setStatus(RoomStatus.AVAILABLE);
         return roomRepo.save(room);
     }
 
@@ -45,4 +54,14 @@ public class RoomServiceImpl implements RoomService {
     public void delete(Room room) {
         roomRepo.delete(room.getId());
     }
+
+    @Override
+    public Room findOne(Long room) {
+        return null;
+    }
+
+
+
+
+
 }

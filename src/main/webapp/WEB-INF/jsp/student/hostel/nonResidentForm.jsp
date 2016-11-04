@@ -89,7 +89,6 @@
                                     <form:select path="semCount" name="semCount" type="select" cssClass="form-control">
                                         <form:options />
                                     </form:select>
-
                                 </div>
                             </div>
                             <div class="form-group">

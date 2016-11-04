@@ -12,6 +12,7 @@ public interface ReserveRoomsService {
     public ReserveRooms create(ReserveRooms reserveRooms);
     public ReserveRooms findById(Long id);
     public List<ReserveRooms> findAll();
+    public ReserveRooms findOne(Long reserveRooms);
     public ReserveRooms update(ReserveRooms reserveRooms);
     public void delete(ReserveRooms reserveRooms);
 }

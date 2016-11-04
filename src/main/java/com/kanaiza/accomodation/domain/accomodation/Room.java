@@ -2,6 +2,7 @@ package com.kanaiza.accomodation.domain.accomodation;
 
 import com.kanaiza.accomodation.domain.AbstractModel;
 import com.kanaiza.accomodation.domain.enumeration.BedStatus;
+import com.kanaiza.accomodation.domain.enumeration.RoomStatus;
 import com.kanaiza.accomodation.domain.enumeration.RoomType;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -19,6 +20,8 @@ public class Room extends AbstractModel {
     private String name;
     @Enumerated(EnumType.STRING)
     private RoomType roomType;
+    @Enumerated(EnumType.STRING)
+    private RoomStatus status;
     @ManyToOne
     private Block block;
     @NotNull(message = "Provide cost of room")
@@ -117,5 +120,13 @@ public class Room extends AbstractModel {
 
     public void setReservedNo(ReserveRooms reservedNo) {
         this.reservedNo = reservedNo;
+    }
+
+    public RoomStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(RoomStatus status) {
+        this.status = status;
     }
 }

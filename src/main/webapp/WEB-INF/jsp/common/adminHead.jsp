@@ -74,7 +74,7 @@
                 <a href="/admin/hostels/list"><i class="fa fa-files-o"></i> <span>Hostels</span></a>
             </li>
             <li>
-                <a href="/admin/reservedRooms"><i class="fa fa-files-o"></i> <span>Reserved Rooms</span></a>
+                <a href="#/admin/reservedRooms"><i class="fa fa-files-o"></i> <span>Reserved Rooms</span></a>
             </li>
             <li>
                 <a href="/admin/hostels/roomitems"><i class="fa fa-files-o"></i> <span>Room Items</span></a>

@@ -133,7 +133,6 @@ public class BedServiceImpl implements BedService {
         bookedBeds.clear();
 
         bookedBeds.addAll(bedRepo.findByStatusAndRoom(BedStatus.BOOKED , room));
-        bookedBeds.addAll(bedRepo.findByStatusAndRoom(BedStatus.RESERVED , room));
 
         //check if there are no bookings and assign additional room items
 
@@ -200,8 +199,6 @@ public class BedServiceImpl implements BedService {
             switch (student.getBed().getStatus()) {
                 case BOOKED:
                     return student.getBed();
-                case RESERVED:
-                    return student.getBed();
                 case OCCUPIED:
                     return student.getBed();
                 default:
@@ -264,9 +261,6 @@ public class BedServiceImpl implements BedService {
             //accept clearance
 
             switch (currentSemester.getSemCount()) {
-                case FIRST:
-                    bedInDb.setStatus(BedStatus.RESERVED);
-                    break;
                 case SECOND:
                     bedInDb.setStatus(BedStatus.AVAILABLE);
                     bedInDb.setStudent(null);
@@ -327,9 +321,4 @@ public class BedServiceImpl implements BedService {
         return cal.getTime();
     }
 
-    @Override
-    public Bed findById(Long studentId) {
-
-        return bedRepo.findOne(studentId);
-    }
 }
