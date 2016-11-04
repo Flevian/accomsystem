@@ -322,8 +322,7 @@ public class BedServiceImpl implements BedService {
         return cal.getTime();
     }
 
-<<<<<<< HEAD
-=======
+
     @Override
     public Bed findById(Long studentId) {
 
@@ -334,5 +333,5 @@ public class BedServiceImpl implements BedService {
     public List<Bed> findByStatusAndZoneCode(BedStatus bedStatus, String zoneCode) {
         return bedRepo.findByStatusAndZoneCode(bedStatus , zoneCode);
     }
->>>>>>> 668101fc05042de0b2b4c1a664dc5f2dc2a3ad0e
+
 }

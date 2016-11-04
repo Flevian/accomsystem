@@ -55,9 +55,6 @@
                                                 <th>Total</th>
                                                 <th>Issued</th>
                                                 <th>Available</th>
-                                                <th>Good</th>
-                                                <th>Bad</th>
-                                                <th>Lost</th>
                                                 <th></th>
                                             </tr>
                                             </thead>
@@ -69,10 +66,7 @@
                                                     <td>${item.totalAvailable}</td>
                                                     <td>${item.totalIssued}</td>
                                                     <td>${item.getAvailable(item.totalAvailable , item.totalIssued)}</td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td>
+                                                  <td>
                                                         <a href="/admin/hostels/roomitems?flag=true&val=${item.id}">Edit</a>
                                                     </td>
                                                 </tr>
